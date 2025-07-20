@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="Fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jamal laabaa</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    // Initialiser EmailJS
+    (function() {
+      emailjs.init("YOUR_EMAILJS_USER_ID"); // Remplacer par votre ID EmailJS
+    })();
+  </script>
+</head>
+<body>
+
+
+  <!-- ✅ Barre promotionnelle moderne -->
+  <div class="promo-bar">🎉 Livraison gratuite à partir de 299 DH ! 🎉</div>
+
+ </head>
+
+<header>
+    <div class="left-buttons">
+      <button title="Menu">☰</button>
+      <button title="Recherche">🔍</button>
+    </div>
+    <div class="logo">
+     <img src="images/logo.png" alt="logo" />
+    </div>
+    <div class="right-buttons">
+      <button title="Compte">👤</button>
+      <button title="Panier" onclick="ajouterAuPanier()">🛒 <span id="panier-count">0</span></button>
+    </div>
+  </header>
+
+
+<section class="banner">
+    <div class="banner-content">
+      <h1>Bienvenue chez Jamal Alaabaa</h1>
+      <p>Découvrez nos meilleurs produits à prix imbattables</p>
+      <a href="#nouveautes" class="banner-button">Voir les nouveautés</a>
+    </div>
+    <div class="slider">
+      <img src="images/image1.jpg" class="slide active" alt="Image 1">
+      <img src="images/image2.jpg" class="slide" alt="Image 2">
+      <img src="images/image3.jpg" class="slide" alt="Image 3">
+    </div>
+  </section>
+
+<section class="section" id="section1">
+  <h2 class="section-title">🆕 Nouveautés</h2>
+  <div class="products-grid" id="productGrid1">
+    <!-- PRODUIT A1 -->
+    <div class="product-card" data-images='["images/produit11.jpg", "images/produit12.jpg"]'>
+      <div class="product-image">
+        <span class="discount-badge">-20%</span>
+        <img src="images/produit11.jpg" class="main-img" alt="Produit A1">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Produit A1</h3>
+        <div>
+          <span class="price">159 DH</span>
+          <span class="old-price">199 DH</span>
+        </div>
+        <div class="color-options">
+          <span class="color-circle red" data-img="images/produit11.jpg"></span>
+          <span class="color-circle black" data-img="images/produit12.jpg"></span>
+        </div>
+        <button id="btn-acheter">Acheter</button>
+      </div>
+    </div>
+
+  
+  <button class="voir-plus-btn" onclick="toggleProducts('productGrid1')">Voir plus</button>
+</section>
+
+<form id="form-client" style="display:none;">
+  <input type="text" id="nom" placeholder="Nom complet" required>
+  <input type="tel" id="telephone" placeholder="Numéro de téléphone" required>
+  <button type="submit">Envoyer</button>
+</form>
+<style>
+  #btn-acheter {
+    padding: 12px 24px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 20px 0;
+  }
+
+  #btn-acheter:hover {
+    background-color: #34495e;
+  }
+
+  #form-client {
+    display: none;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 400px;
+    margin-top: 20px;
+  }
+
+  #form-client input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+  }
+
+  #form-client button[type="submit"] {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #form-client button[type="submit"]:hover {
+    background-color: #219150;
+  }
+</style>
+ <div class="container">
+    <!-- Bouton Acheter -->
+    <button id="btn-acheter">Acheter</button>
+
+ <form id="form-client">
+      <input type="text" id="nom" placeholder="Nom complet" required>
+      <input type="tel" id="telephone" placeholder="Numéro de téléphone" required>
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+  <footer>&copy; 2025 Ma Boutique. Tous droits réservés.</footer>
+
+   <script>
+    // Panier avec localStorage
+    let panier = JSON.parse(localStorage.getItem('panier')) || 0;
+    document.getElementById('panier-count').innerText = panier;
+
+    function ajouterAuPanier() {
+      panier++;
+      localStorage.setItem('panier', JSON.stringify(panier));
+      document.getElementById('panier-count').innerText = panier;
+    }
+
+    // Slider automatique
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 2000);
+
+    // Formulaire EmailJS
+    function envoyerMessage(event) {
+      event.preventDefault();
+      const form = event.target;
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        nom: form.nom.value,
+        email: form.email.value,
+        message: form.message.value
+      })
+      .then(() => {
+        alert("Message envoyé avec succès !");
+        form.reset();
+      })
+      .catch((error) => {
+        alert("Erreur lors de l'envoi: " + JSON.stringify(error));
+      });
+    }
+  </script>
+  <script>
+  // ⬅️ Image switch selon couleur
+  document.querySelectorAll('.color-circle').forEach(circle => {
+    circle.addEventListener('click', () => {
+      const newImg = circle.dataset.img;
+      const card = circle.closest('.product-card');
+      const mainImg = card.querySelector('.main-img');
+      mainImg.src = newImg;
+    });
+  });
+
+  // ⬇️ Voir plus toggle (2 par défaut)
+  function toggleProducts(gridId) {
+    const grid = document.getElementById(gridId);
+    const cards = grid.querySelectorAll('.product-card');
+    const btn = grid.nextElementSibling;
+    const isShowingAll = btn.dataset.expanded === "true";
+
+    cards.forEach((card, index) => {
+      if (isShowingAll) {
+        card.style.display = index < 2 ? "block" : "none";
+      } else {
+        card.style.display = "block";
+      }
+    });
+
+    btn.textContent = isShowingAll ? "Voir plus" : "Voir moins";
+    btn.dataset.expanded = isShowingAll ? "false" : "true";
+  }
+
+  // 👀 Afficher seulement 2 produits au départ
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.products-grid').forEach(grid => {
+      const cards = grid.querySelectorAll('.product-card');
+      cards.forEach((card, index) => {
+        card.style.display = index < 2 ? 'block' : 'none';
+      });
+    });
+  });
+</script>
+<script>
+const menuBtn = document.getElementById('menu-btn');
+const mainMenu = document.getElementById('main-menu');
+const body = document.body;
+
+menuBtn.addEventListener('click', () => {
+  if(mainMenu.classList.contains('hidden')) {
+    mainMenu.classList.remove('hidden');
+    body.classList.add('menu-visible');
+  } else {
+    mainMenu.classList.add('hidden');
+    body.classList.remove('menu-visible');
+  }
+});
+</script>
+ <script>
+    const btn = document.getElementById("btn-acheter");
+    const form = document.getElementById("form-client");
+
+    btn.addEventListener("click", () => {
+      form.classList.toggle("show");
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nom = document.getElementById("nom").value;
+      const telephone = document.getElementById("telephone").value;
+
+      const response = await fetch('/enregistrer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nom, telephone })
+      });
+
+      const result = await response.json();
+      alert(result.message);
+    });
+  </script>
+
+
+</body>
+
+</html>

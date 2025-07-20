@@ -1,0 +1,383 @@
+/* =====================
+   🌟 STYLE GLOBAL
+===================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background-color: #F5F0E1;
+  color: #2B2B2B;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+img {
+  font-size: 20px;  /* taille plus petite */
+  font-weight: bold;
+  color: #1A3D2F;
+  text-align: center;
+  flex: 1
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =====================
+   🔝 Promo Bar
+===================== */
+.promo-bar {
+  background: #581D1D;
+  color: #F5F0E1;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* =====================
+   🔳 Header
+===================== */
+header {
+    background: #E9E4D4;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 12px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  #menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+  
+  .left-buttons,
+  .right-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .left-buttons {
+    justify-content: flex-start;
+  }
+  
+  .right-buttons {
+    justify-content: flex-end;
+  }
+  
+  button {
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1A3D2F;
+  }
+  
+  .logo img {
+    max-height: 40px;  /* hauteur fixe */
+    width: auto;       /* largeur automatique pour garder les proportions */
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Responsive pour petits écrans */
+  @media (max-width: 600px) {
+    header {
+      grid-template-columns: 1fr auto 1fr;
+      padding: 10px 15px;
+    }
+  
+    button {
+      font-size: 18px;
+    }
+  
+    .logo {
+      font-size: 20px;
+    }
+  }
+
+
+
+/* =====================
+   🎞️ Banner / Slider
+===================== */
+.banner {
+  position: relative;
+  overflow: hidden;
+  background: #1A3D2F;
+  color: #F5F0E1;
+}
+.banner-content {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.banner h1 {
+  font-size: 2.5rem;
+}
+.banner p {
+  margin: 10px 0 20px;
+}
+.banner-button {
+  background: #581D1D;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.banner-button:hover {
+  background: #BFA75A;
+  color: #1A3D2F;
+}
+.slider {
+  display: flex;
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.slide.active {
+  display: block;
+  animation: fade 1s ease-in-out;
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =====================
+   🛍️ Produits
+===================== */
+/* SECTION BASE */
+.section {
+  padding: 40px 20px;
+  background: #F9F8F3;
+}
+
+.section-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #1A3D2F;
+}
+
+/* GRID PRODUITS */
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.product-card {
+  width: calc(50% - 10px); /* 2 produits par ligne */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.main-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #C62828;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.product-info {
+  padding: 15px;
+}
+
+.product-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.price {
+  color: #1A3D2F;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.old-price {
+  color: #888;
+  text-decoration: line-through;
+  font-size: 14px;
+}
+
+.color-options {
+  margin-top: 10px;
+}
+
+.color-circle {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-right: 6px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.color-circle:hover {
+  transform: scale(1.2);
+}
+
+.red { background-color: #B71C1C; }
+.black { background-color: #000000; }
+.green { background-color: #2E7D32; }
+.blue { background-color: #1565C0; }
+
+/* BOUTON ACHETER */
+.buy-btn {
+  margin-top: 12px;
+  padding: 10px;
+  background-color: #1A3D2F;
+  color: #fff;
+  border: none;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.buy-btn:hover {
+  background-color: #2E5744;
+}
+
+/* BOUTON VOIR PLUS */
+.voir-plus-btn {
+  margin: 30px auto 0;
+  display: block;
+  padding: 10px 20px;
+  background: #1A3D2F;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.voir-plus-btn:hover {
+  background: #2E5744;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%;
+  }
+}
+
+/* =====================
+   📬 Contact Form
+===================== */
+.contact {
+  padding: 40px 20px;
+  background: #E9E4D4;
+  text-align: center;
+}
+.contact h2 {
+  margin-bottom: 20px;
+  color: #1A3D2F;
+}
+.contact form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.contact input, .contact textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-family: 'Playfair Display', serif;
+}
+.contact input[type="submit"] {
+  background: #1A3D2F;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.contact input[type="submit"]:hover {
+  background: #581D1D;
+}
+
+/* =====================
+   🧍 Responsive Mobile
+===================== */
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .banner h1 {
+    font-size: 1.5rem;
+  }
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+
+/* =====================
+   🔚 Footer
+===================== */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #1A3D2F;
+  color: white;
+  font-size: 14px;
+  font-family: 'Playfair Display', serif;
+}
